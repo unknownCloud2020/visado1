@@ -1,159 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1010</x>
-      <y>460</y>
-      <w>210</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Author&gt;&gt;
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>827</x><y>460</y><w>210</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Author&gt;&gt;
 --
 -id: Long
-_-ClassAttribute: Long_
+-name: String
+-origin: String
+-yearsActive: String
+webSite: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>620</x>
-      <y>460</y>
-      <w>210</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Track&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>437</x><y>460</y><w>210</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Track&gt;&gt;
 --
 -id: Long
-_-ClassAttribute: Long_
+-name: String
+-duration: Decimal
+-format: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>210</x>
-      <y>460</y>
-      <w>210</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Album&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>27</x><y>460</y><w>210</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Album&gt;&gt;
 --
 -id: Long
-_-ClassAttribute: Long_
+-name: String
+-publishDate: Date
+-recordCompany: String
+-duration: Decimal
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>280</x>
-      <y>220</y>
-      <w>210</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Playlist&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>97</x><y>220</y><w>210</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Playlist&gt;&gt;
 --
 -id: Long
-_-ClassAttribute: Long_
+-name: String
+-duration: Decimal
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>920</x>
-      <y>290</y>
-      <w>210</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Gender&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>737</x><y>290</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Gender&gt;&gt;
 --
 -id: Long
-_-ClassAttribute: Long_
+name: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>410</x>
-      <y>510</y>
-      <w>230</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>227</x><y>510</y><w>230</w><h>50</h></coordinates><panel_attributes>lt=-
 m1=0..n
 m2=0..1
-Tracks &gt;</panel_attributes>
-    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>820</x>
-      <y>510</y>
-      <w>210</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-
+Tracks &gt;</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>637</x><y>510</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=-
 m1=0..1
 m2=0..1
-Author &gt;</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>290</x>
-      <y>560</y>
-      <w>860</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=-
+Author &gt;</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>107</x><y>590</y><w>860</w><h>80</h></coordinates><panel_attributes>lt=-
 m1=0..1
 m2=0..n
-&lt; Albums</panel_attributes>
-    <additional_attributes>820.0;20.0;820.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>720</x>
-      <y>320</y>
-      <w>220</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=-
+&lt; Albums</panel_attributes><additional_attributes>820;10;820;60;10;60;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>537</x><y>320</y><w>220</w><h>160</h></coordinates><panel_attributes>lt=-
 m1=0..n
 m2=0..1
-Genders &gt;</panel_attributes>
-    <additional_attributes>200.0;20.0;10.0;20.0;10.0;140.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>440</x>
-      <y>320</y>
-      <w>240</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=-
+Genders &gt;</panel_attributes><additional_attributes>200;20;10;20;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>257</x><y>320</y><w>240</w><h>160</h></coordinates><panel_attributes>lt=-
 m1=0..1
 m2=0..n
-Songs &gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0;200.0;90.0;200.0;140.0</additional_attributes>
-  </element>
-</diagram>
+Songs &gt;</panel_attributes><additional_attributes>10;10;10;90;200;90;200;140</additional_attributes></element></diagram>
