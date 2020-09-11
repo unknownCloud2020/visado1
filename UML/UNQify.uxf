@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>827</x><y>460</y><w>210</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Author&gt;&gt;
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>877</x><y>690</y><w>210</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Author&gt;&gt;
 --
 -id: Long
 -name: String
@@ -7,7 +7,7 @@
 webSite: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>437</x><y>460</y><w>210</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Track&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>487</x><y>690</y><w>210</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Track&gt;&gt;
 --
 -id: Long
 -name: String
@@ -15,7 +15,7 @@ webSite: String
 -format: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>27</x><y>460</y><w>210</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Album&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>77</x><y>690</y><w>210</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Album&gt;&gt;
 --
 -id: Long
 -name: String
@@ -24,32 +24,48 @@ webSite: String
 -duration: Decimal
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>97</x><y>220</y><w>210</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Playlist&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>147</x><y>450</y><w>210</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Playlist&gt;&gt;
 --
 -id: Long
 -name: String
 -duration: Decimal
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>737</x><y>290</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Gender&gt;&gt;
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>787</x><y>520</y><w>210</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Gender&gt;&gt;
 --
 -id: Long
 name: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>227</x><y>510</y><w>230</w><h>50</h></coordinates><panel_attributes>lt=-
+/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>277</x><y>740</y><w>230</w><h>50</h></coordinates><panel_attributes>lt=-
 m1=0..n
 m2=0..1
-Tracks &gt;</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>637</x><y>510</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=-
+Tracks &gt;</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>687</x><y>740</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=-
 m1=0..1
 m2=0..1
-Author &gt;</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>107</x><y>590</y><w>860</w><h>80</h></coordinates><panel_attributes>lt=-
+Author &gt;</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>157</x><y>820</y><w>860</w><h>80</h></coordinates><panel_attributes>lt=-
 m1=0..1
 m2=0..n
-&lt; Albums</panel_attributes><additional_attributes>820;10;820;60;10;60;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>537</x><y>320</y><w>220</w><h>160</h></coordinates><panel_attributes>lt=-
+&lt; Albums</panel_attributes><additional_attributes>820;10;820;60;10;60;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>587</x><y>550</y><w>220</w><h>160</h></coordinates><panel_attributes>lt=-
 m1=0..n
 m2=0..1
-Genders &gt;</panel_attributes><additional_attributes>200;20;10;20;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>257</x><y>320</y><w>240</w><h>160</h></coordinates><panel_attributes>lt=-
+Genders &gt;</panel_attributes><additional_attributes>200;20;10;20;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>307</x><y>550</y><w>240</w><h>160</h></coordinates><panel_attributes>lt=-
 m1=0..1
 m2=0..n
-Songs &gt;</panel_attributes><additional_attributes>10;10;10;90;200;90;200;140</additional_attributes></element></diagram>
+Songs &gt;</panel_attributes><additional_attributes>10;10;10;90;200;90;200;140</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>60</x><y>400</y><w>1050</w><h>520</h></coordinates><panel_attributes>Subsystems
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>230</x><y>80</y><w>540</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Unqfy&gt;&gt;
+--
+--
+#addArtist(artistData: Author): Author
+#addAlbum(artistId: Long, albumData): Album
+#addTrack(albumId, trackData): Track
+#getArtistById(id: Long): Author
+#getAlbumById(id: Long): Album
+#getTrackById(id: Long): Track
+#getPlaylistById(id: Long): Playlist
+#getTracksMatchingGenres(genres: Array&lt;String&gt;): Array&lt;Track&gt;
+#getTracksMatchingArtist(artistName: String): Array&lt;Track&gt;
+#createPlaylist(name: String, genresToInclude: Array&lt;String&gt;, maxDuration: Decimal): Playlist
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>260</y><w>50</w><h>160</h></coordinates><panel_attributes>lt=&lt;..
+use</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>80</y><w>100</w><h>30</h></coordinates><panel_attributes>Main</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>80</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element></diagram>
