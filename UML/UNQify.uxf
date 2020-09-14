@@ -1,4 +1,15 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>917</x><y>630</y><w>210</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Author&gt;&gt;
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <help_text>Space for diagram notes</help_text>
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>882</x>
+      <y>486</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Author&gt;&gt;
 --
 -id: Long
 -name: String
@@ -7,7 +18,18 @@
 webSite: String
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>527</x><y>630</y><w>210</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Track&gt;&gt;
+/+AbstractOperation()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>648</x>
+      <y>486</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Track&gt;&gt;
 --
 -id: Long
 -name: String
@@ -16,7 +38,18 @@ webSite: String
 -genders: Array&lt;String&gt;
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>117</x><y>630</y><w>210</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Album&gt;&gt;
+/+AbstractOperation()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>402</x>
+      <y>486</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Album&gt;&gt;
 --
 -id: Long
 -name: String
@@ -25,28 +58,91 @@ webSite: String
 -duration: Decimal
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>187</x><y>390</y><w>210</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Playlist&gt;&gt;
+/+AbstractOperation()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>444</x>
+      <y>342</y>
+      <w>126</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Playlist&gt;&gt;
 --
 -id: Long
 -name: String
 -duration: Decimal
 --
 #Operation(i: int): int
-/+AbstractOperation()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>317</x><y>680</y><w>230</w><h>50</h></coordinates><panel_attributes>lt=-
+/+AbstractOperation()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>522</x>
+      <y>516</y>
+      <w>138</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..n
 m2=0..1
-Tracks &gt;</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>727</x><y>680</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=-
-m1=0..1
-m2=0..1
-Author &gt;</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>197</x><y>760</y><w>860</w><h>80</h></coordinates><panel_attributes>lt=-
+Tracks &gt;</panel_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>564</y>
+      <w>516</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-&lt; Albums</panel_attributes><additional_attributes>820;10;820;60;10;60;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>347</x><y>490</y><w>240</w><h>160</h></coordinates><panel_attributes>lt=-
+&lt; Albums</panel_attributes>
+    <additional_attributes>820.0;10.0;820.0;60.0;10.0;60.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>402</y>
+      <w>144</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-Songs &gt;</panel_attributes><additional_attributes>10;10;10;90;200;90;200;140</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>100</x><y>340</y><w>1050</w><h>520</h></coordinates><panel_attributes>Subsystems
+Songs &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;200.0;90.0;200.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>384</x>
+      <y>324</y>
+      <w>630</w>
+      <h>306</h>
+    </coordinates>
+    <panel_attributes>Subsystems
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>270</x><y>20</y><w>540</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Unqfy&gt;&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>120</y>
+      <w>324</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Unqfy&gt;&gt;
 --
 --
 #addArtist(artistData: Author): Author
@@ -59,5 +155,213 @@ Songs &gt;</panel_attributes><additional_attributes>10;10;10;90;200;90;200;140</
 #getTracksMatchingGenres(genres: Array&lt;String&gt;): Array&lt;Track&gt;
 #getTracksMatchingArtist(artistName: String): Array&lt;Track&gt;
 #createPlaylist(name: String, genresToInclude: Array&lt;String&gt;, maxDuration: Decimal): Playlist
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>200</y><w>50</w><h>160</h></coordinates><panel_attributes>lt=&lt;..
-use</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>20</y><w>100</w><h>30</h></coordinates><panel_attributes>Main</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>20</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element></diagram>
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>168</y>
+      <w>156</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+Author &gt;</panel_attributes>
+    <additional_attributes>180.0;530.0;180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>240</y>
+      <w>60</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..n
+playlists &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>60</y>
+      <w>96</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;IOperation&gt;&gt;
+Interface
+--
+#execute() : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>60</y>
+      <w>204</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Invoker&gt;&gt;
+Operation
+--
+-operations : List&lt;IOperation&gt;
+--
+#receiveOperation(IOperation operation) : void
+#performOperations() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>306</x>
+      <y>162</y>
+      <w>108</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;SearchAllTracksForArtist&gt;&gt;
+--
+unqFy: Unqfy
+--
+#execute() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>0</y>
+      <w>102</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Client&gt;&gt;
+main
+--
+#main()
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>84</y>
+      <w>54</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>54</y>
+      <w>18</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>162</y>
+      <w>102</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+
+ </panel_attributes>
+    <additional_attributes>150.0;10.0;30.0;10.0;30.0;50.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>162</y>
+      <w>108</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;SearchAllTracksForGenero&gt;&gt;
+--
+unqFy: Unqfy
+--
+#execute() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>108</y>
+      <w>60</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;60.0;10.0;60.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>756</x>
+      <y>96</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Note..
+&lt;&lt;Receiver&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>204</x>
+      <y>198</y>
+      <w>306</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+
+ </panel_attributes>
+    <additional_attributes>490.0;10.0;400.0;10.0;400.0;70.0;10.0;70.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>108</y>
+      <w>78</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;110.0;60.0;110.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>354</x>
+      <y>12</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Note..
+Command pattern</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
