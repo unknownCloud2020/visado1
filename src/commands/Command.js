@@ -10,7 +10,7 @@ class Command {
 
     paramsBuilder(args) {
         const params = [];
-        while (args) {
+        while (args.length > 0) {
             const param = args.shift();
             const value = args.shift();
             params.push({ [param]: value });
