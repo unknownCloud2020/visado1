@@ -1,12 +1,5 @@
 const Command = require('../Command');
-const unqmod = require('../../../unqfy'); // importamos el modulo unqfy
 
-class GetTrackByIdCommand extends Command {
-    
-    execute(args) {
-        const unqfy = new unqmod.UNQfy();
-        // unqfy.addArtist(this.mapper(args));
-    }
-}
+class GetTrackByIdCommand extends Command {}
 
 module.exports = GetTrackByIdCommand;
