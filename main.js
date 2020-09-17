@@ -1,10 +1,11 @@
 const fs = require('fs'); // necesitado para guardar/cargar unqfy
 const unqmod = require('./unqfy'); // importamos el modulo unqfy
-const AddTrackCommand = require('./src/commands/AddTrackCommand')
+const commands = require('./src/commands/index');
 
 // contrucción mapa de comandos
-const commandos = new Map();
-commandos.set("addTrack", AddTrackCommand);
+// eslint-disable-next-line no-undef
+// const commandos = new Map();
+// commandos.set("addTrack", AddTrackCommand);
 
 // Retorna una instancia de UNQfy. Si existe filename, recupera la instancia desde el archivo.
 function getUNQfy(filename = 'data.json') {
@@ -50,10 +51,10 @@ function saveUNQfy(unqfy, filename = 'data.json') {
 */
 
 function main() {
-  // console.log('arguments: ');
-  // process.argv.forEach(argument => console.log(argument));
   const commandIn = process.argv.slice(2).shift(); // obtengo el commando enviado por parametro, que es el tercer argumento
-  commandos.get(commandIn).prototype.execute(process.argv.slice(2)); // obtengo el correspondiente commando para ejecutar su logica
+  const command = commands.get(commandIn.toUpperCase()).prototype; // obtengo la clase del comando por polimorfismo
+  const params = process.argv.slice(3); 
+  command.execute(params); // ejecuto comando y envio el resto de los argumentos
 }
 
 main();
