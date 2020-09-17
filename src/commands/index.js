@@ -22,5 +22,4 @@ commands.set('GETTRACKSMATCHINGARTIST', GetTracksMatchingArtistCommand);
 commands.set('ADDALBUM', AddAlbumCommand);
 commands.set('GETALBUMBYID', GetAlbumByIdCommand);
 
-
 module.exports = commands;

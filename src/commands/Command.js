@@ -1,10 +1,15 @@
+const unqmod = require('../../unqfy'); // importamos el modulo unqfy
+
 class Command {
 
     constructor() {
 
     }
 
-    execute(args) { throw Error("Implementa este mensaje"); }
+    execute(args) {
+        const unqfy = new unqmod.UNQfy();
+        unqfy.addArtist(this.paramsBuilder(args));
+    }
 
     paramsBuilder(args) {
         const params = [];
