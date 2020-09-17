@@ -1,11 +1,16 @@
 
 const picklify = require('picklify'); // para cargar/guarfar unqfy
 const fs = require('fs'); // para cargar/guarfar unqfy
+const ar = require('./src/entity/Author')
+
 
 class UNQfy {
 
-  // let artists = []
-  // let playlists = []
+   constructor() {
+     this.artists = []
+     this.playlists = []
+   }
+
 
   // artistData: objeto JS con los datos necesarios para crear un artista
   //   artistData.name (string)
@@ -17,9 +22,18 @@ class UNQfy {
     - una propiedad name (string)
     - una propiedad country (string)
   */
-    console.log('addTrack');
-    console.log('name artist: ', artistData.name);
-    console.log('country artist: ', artistData.country);
+
+     let artist =  new ar(artistData.name,artistData.country);
+     this.artists.push(artist);
+
+     console.log('addArtist');
+     console.log('name: ', artist.name);
+     console.log('country: ', artist.country);
+     console.log(this.artists[0])
+
+    return artist;
+
+
   }
 
 
