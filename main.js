@@ -53,8 +53,11 @@ function saveUNQfy(unqfy, filename = 'data.json') {
 function main() {
   const commandIn = process.argv.slice(2).shift(); // obtengo el commando enviado por parametro, que es el tercer argumento
   const command = commands.get(commandIn.toUpperCase()).prototype; // obtengo la clase del comando por polimorfismo
+  const unqFy = getUNQfy();
+  command.setUNQfy(unqFy);
   const params = process.argv.slice(3); 
   command.execute(params); // ejecuto comando y envio el resto de los argumentos
+  saveUNQfy(unqFy);
 }
 
 main();
