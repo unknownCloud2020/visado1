@@ -54,7 +54,7 @@ function main() {
   // console.log('arguments: ');
   // process.argv.forEach(argument => console.log(argument));
   const commandIn = process.argv.slice(2).shift(); // obtengo el commando enviado por parametro, que es el tercer argumento
-  commands.get(commandIn.toUpperCase()).prototype.execute(process.argv.slice(2)); // obtengo el correspondiente commando para ejecutar su logica
+  commands.get(commandIn.toUpperCase()).prototype.execute(process.argv.slice(3)); // obtengo el correspondiente commando para ejecutar su logica
 }
 
 main();

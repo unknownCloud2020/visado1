@@ -5,16 +5,8 @@ class AddTrackCommand extends Command {
     
     execute(args) {
         const unqfy = new unqmod.UNQfy();
-        unqfy.addArtist(this.mapper(args));
+        unqfy.addArtist(this.paramsBuilder(args));
     }
-
-    mapper(args) {
-        const splitArgs = args.slice();
-        const name = splitArgs.shift();
-        const country = splitArgs.shift();
-        return { name: name, country: country };
-    }
-
 }
 
 module.exports = AddTrackCommand;

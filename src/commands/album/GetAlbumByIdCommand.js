@@ -7,14 +7,6 @@ class GetAlbumByIdCommand extends Command {
         const unqfy = new unqmod.UNQfy();
         // unqfy.addArtist(this.mapper(args));
     }
-
-    mapper(args) {
-        // const splitArgs = args.slice();
-        // const name = splitArgs.shift();
-        // const country = splitArgs.shift();
-        // return { name: name, country: country };
-    }
-
 }
 
 module.exports = GetAlbumByIdCommand;

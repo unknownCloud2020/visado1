@@ -7,11 +7,6 @@ class GetPlaylistByIdCommand extends Command {
         const unqfy = new unqmod.UNQfy();
         //unqfy.addArtist(this.mapper(args));
     }
-
-    mapper(args) {
-
-    }
-
 }
 
 module.exports = GetPlaylistByIdCommand;
