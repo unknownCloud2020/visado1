@@ -6,6 +6,7 @@ class Command {
 
     execute(args) {
         this.unqfy.addArtist(this.paramsBuilder(args));
+        throw "Method execute not implemented yet.";
     }
 
     paramsBuilder(args) {
