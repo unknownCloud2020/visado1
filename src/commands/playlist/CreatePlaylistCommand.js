@@ -2,7 +2,7 @@ const Command = require('../Command');
 
 class CreatePlaylistCommand extends Command {
     execute(args) { 
-        this.unqfy.addArtist(this.paramsBuilder(args));
+        this.unqfy.createPlaylist(this.paramsBuilder(args));
     }
 }
 
