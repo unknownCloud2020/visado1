@@ -15,7 +15,9 @@ class Command {
             const value = args.shift();
             params.push({ [param]: value });
         }
+        console(params)
         return Object.assign(...params);
+
     }
 
     setUNQfy(instance) {
