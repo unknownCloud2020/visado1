@@ -6,7 +6,7 @@ class IdAutoIncrementPlaylist {
    }
 
    idAutoIncrement() {
-     this.id = this.id + 1;
+     return this.id = this.id + 1;
    }
 
    getId() {

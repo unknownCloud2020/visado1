@@ -1,11 +1,12 @@
 
 class Playlist {
 
-  constructor(id, name, duration, tracks) {
+  constructor(id, name, genres) {
     this.id = id;
     this.name = name;
-    this.duration = duration;
-    this.tracks = tracks;
+    this.duration = 0;
+    this.genres = genres;
+    this.tracks = [];
   }
 
   getId() {
@@ -32,6 +33,11 @@ class Playlist {
     this.duration = duration;
   }
 
+  addTrack(track) {
+    this.setDuration(this.calculateDuration());
+    return this.tracks.push(track);
+  }
+
   getTracks() {
     return this.tracks;
   }
@@ -42,6 +48,25 @@ class Playlist {
 
   hasTrack(aTrack) {
     return this.tracks.find(t => t.id === aTrack.id);
+  }
+
+  calculateDuration() {
+    return this.tracks.reduce(this.getSumDuration, 0);
+  }
+
+  getSumDuration(total, track) {
+    return total + track.duration;
+  }
+
+  generateListByGenres(tracks, maxDuration) {
+    console.log("generateListByGenres", this.genres);
+    let tracksInGenres = tracks.filter(t => this.genres.includes(t.genre));
+    console.log('tracksInGenres', tracksInGenres);
+    while (this.calculateDuration() < maxDuration) {
+      const randomTrack = tracksInGenres[Math.floor(Math.random() * tracksInGenres.length)];
+      this.addTrack(randomTrack);
+      tracksInGenres = tracksInGenres.filter(t => !this.hasTrack(t));
+    }
   }
 }
 

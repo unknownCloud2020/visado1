@@ -26,7 +26,7 @@ class Command {
         } 
         // si esta dividido por comas es un array
         if (value.indexOf(',') > 0) { 
-            return value.trim().split(','); 
+            return value.replace(/ /g, '').split(','); // quitar especios en blancos y convetir en array
         }
         // por defecto no parsea, si es string o cualquier otro tipo
         return value;

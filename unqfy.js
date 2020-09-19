@@ -14,6 +14,20 @@ class UNQfy {
   constructor() {
     this.artists = [];
     this.playlists = [];
+    this.tracks = [
+      {
+        id: 1,
+        name: 'asd',
+        genre: 'rock',
+        duration: 2000
+      },
+      {
+        id: 2,
+        name: 'asd',
+        genre: 'rock',
+        duration: 2000
+      }
+    ];
     this.idIncrementArtist = new idIncrement();
     this.idIncrementPlaylist = new IdAutoIncrementPlaylist();
   }
@@ -124,10 +138,56 @@ class UNQfy {
         * un metodo duration() que retorne la duración de la playlist.
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
-
     try {
+      this.tracks = [
+        {
+          id: 1,
+          name: 'asd2',
+          genre: 'rock',
+          duration: 2000
+        },
+        {
+          id: 2,
+          name: 'asd3',
+          genre: 'rock',
+          duration: 1000
+        },
+        {
+          id: 3,
+          name: 'asd4',
+          genre: 'rock',
+          duration: 1000
+        },
+        {
+          id: 4,
+          name: 'asd5',
+          genre: 'ska',
+          duration: 1000
+        },
+        {
+          id: 5,
+          name: 'asd5',
+          genre: 'ska',
+          duration: 500
+        },
+        {
+          id: 6,
+          name: 'asd6',
+          genre: 'ska',
+          duration: 500
+        },
+        {
+          id: 7,
+          name: 'asd6',
+          genre: 'ska',
+          duration: 500
+        }
+      ];
+
       const idPlaylist = this.idIncrementPlaylist.idAutoIncrement();
-      console.log(new Playlist(idPlaylist, name, genresToInclude, maxDuration));
+      const newPlaylist = new Playlist(idPlaylist, name, genresToInclude);
+      newPlaylist.generateListByGenres(this.tracks, maxDuration);
+      return newPlaylist;
     } catch (error) {
       throw error;
     }
