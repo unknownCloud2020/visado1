@@ -6,6 +6,8 @@ const al = require('./src/entity/Album')
 const idIncrement = require('./src/entity/IdAutoIncrement');
 const Author = require('./src/entity/Author');
 const IdAutoIncrement = require('./src/entity/IdAutoIncrement');
+const IdAutoIncrementPlaylist = require('./src/entity/sequence/IdAutoIncrementPlaylist');
+const Playlist = require('./src/entity/Playlist');
 
 class UNQfy {
 
@@ -13,6 +15,7 @@ class UNQfy {
     this.artists = [];
     this.playlists = [];
     this.idIncrementArtist = new idIncrement();
+    this.idIncrementPlaylist = new IdAutoIncrementPlaylist();
   }
 
 
@@ -122,6 +125,12 @@ class UNQfy {
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
 
+    try {
+      const idPlaylist = this.idIncrementPlaylist.idAutoIncrement();
+      console.log(new Playlist(idPlaylist, name, genresToInclude, maxDuration));
+    } catch (error) {
+      throw error;
+    }
   }
 
   save(filename) {
@@ -132,7 +141,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Author, IdAutoIncrement];
+    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }
