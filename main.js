@@ -57,10 +57,10 @@ function main() {
     const unqFy = getUNQfy();
     command.setUNQfy(unqFy);
     const params = process.argv.slice(3);
-    command.execute(params); // ejecuto comando y envio el resto de los argumentos
+    command.execute(params,this); // ejecuto comando y envio el resto de los argumentos
     saveUNQfy(unqFy);
   } catch (error) {
-    console.log("Hubo un problema, vuelva a intentar verificando los datos ingresados.");
+    console.log("Hubo un problema, vuelva a intentar verificando los datos ingresados.",error);
   }
 }
 

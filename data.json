@@ -8,21 +8,27 @@
   "objects": {
     "__00001__": {
       "artists": "__00002__",
-      "playlists": "__00003__"
+      "playlists": "__00003__",
+      "idIncrementArtist": "__00004__"
     },
     "__00002__": {
-      "0": "__00004__"
+      "0": "__00005__"
     },
     "__00003__": {},
     "__00004__": {
+      "id": 0
+    },
+    "__00005__": {
       "name": "Billie Joe Armstrong",
-      "country": "E.E.U.U"
+      "country": "American Idiot",
+      "id": 0
     }
   },
   "types": {
     "__00001__": "UNQfy",
     "__00002__": "Array",
     "__00003__": "Array",
-    "__00004__": "Author"
+    "__00004__": "IdAutoIncrement",
+    "__00005__": "Author"
   }
 }
