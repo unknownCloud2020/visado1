@@ -60,7 +60,7 @@ function main() {
     command.execute(params); // ejecuto comando y envio el resto de los argumentos
     saveUNQfy(unqFy);
   } catch (error) {
-    console.log("Hubo un problema, vuelva a intentar verificando los datos ingresados.");
+    console.log("Hubo un problema, vuelva a intentar verificando los datos ingresados.", error);
   }
 }
 
