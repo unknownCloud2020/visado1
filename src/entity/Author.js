@@ -2,78 +2,78 @@
 class Author {
 
    constructor(name,country) {
-             this.id
-             this.name = name
-             this.origin
-             this.yearsActive
-             this.country = country
-             this.webSite
-             this.albums
-             this.unqfy
-      }
+             this.id;
+             this.name = name;
+             this.origin;
+             this.yearsActive;
+             this.country = country;
+             this.webSite;
+             this.albums;
+             this.unqfy;
+   }
 
    getId() {
-      return this.id
+      return this.id;
    }
 
    setId(id) {
-      this.id = id
+      this.id = id;
    }
 
    getName() {
-      return this.id
+      return this.name;
    }
 
    setName(name) {
-     this.name = name
+     this.name = name;
    }
 
    getOrigin() {
-     return this.origin
+     return this.origin;
    }
 
    setOrigin(origin) {
-     this.origin = origin
+     this.origin = origin;
    }
 
    getYearsActive() {
-     return this.yearsActive
+     return this.yearsActive;
    }
 
    setYearsActive(yearsActive) {
-     this.yearsActive = yearsActive
+     this.yearsActive = yearsActive;
    }
 
    getCountry() {
-     return this.country
+     return this.country;
    }
 
    setCountry(country) {
-      this.country = country
+      this.country = country;
   }
 
    getWebSite() {
-     return this.webSite
+     return this.webSite;
    }
 
    setWebSite(webSite) {
-     this.webSite = webSite
+     this.webSite = webSite;
    }
 
    getAlbums() {
-     return this.albums
+     return this.albums;
    }
 
    setAlbums(albums) {
-     this.albums = albums
+     this.albums = albums;
    }
 
    getUnqfy() {
-     return this.unqfy
+     return this.unqfy;
    }
 
    setUnqfy(unqfy) {
-     this.unqfy = unqfy
+     this.unqfy = unqfy;
    }
 
 }
