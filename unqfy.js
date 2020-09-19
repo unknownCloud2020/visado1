@@ -193,6 +193,15 @@ class UNQfy {
     }
   }
 
+  printPlaylist(idPlaylist) {
+    const pl = this.playlists.find(p => p.id === idPlaylist);
+    console.log('==============================================================');
+    console.log('Name: ', pl.name);
+    console.log('Dutarion: ', pl.duration);
+    console.log('Genres: ', pl.genres.join(', '));
+    pl.tracks.forEach(t => { console.log('Track: ', t.name, 'Album: ', t.album.name, 'Artist: ', t.album.artist.name); });
+  }
+
   save(filename) {
     const serializedData = picklify.picklify(this);
     fs.writeFileSync(filename, JSON.stringify(serializedData, null, 2));
