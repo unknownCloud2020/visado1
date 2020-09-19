@@ -13,7 +13,7 @@ class Command {
         while (args.length > 0) {
             const param = args.shift();
             const value = args.shift();
-            params.push({ [param]: value });
+            params.push({ [param]: Number.isNaN(parseInt(value)) ? value : parseInt(value) });
         }
         return Object.assign(...params);
     }
