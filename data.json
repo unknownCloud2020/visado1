@@ -9,19 +9,46 @@
     "__00001__": {
       "artists": "__00002__",
       "playlists": "__00003__",
-      "idIncrementArtist": "__00004__"
+      "idIncrementArtist": "__00004__",
+      "idIncrementAlbum": "__00005__",
+      "idIncrementTrack": "__00006__"
     },
     "__00002__": {
-      "0": "__00005__"
+      "0": "__00007__"
     },
     "__00003__": {},
     "__00004__": {
-      "id": 0
+      "id": 1
     },
     "__00005__": {
+      "id": 1
+    },
+    "__00006__": {
+      "id": 1
+    },
+    "__00007__": {
       "name": "Billie Joe Armstrong",
-      "country": "American Idiot",
-      "id": 0
+      "country": "E.E.U.U",
+      "albums": "__00008__",
+      "id": 1
+    },
+    "__00008__": {
+      "0": "__00009__"
+    },
+    "__00009__": {
+      "name": "American Idiot",
+      "year": 2004,
+      "tracks": "__00010__",
+      "id": 1
+    },
+    "__00010__": {
+      "0": "__00011__"
+    },
+    "__00011__": {
+      "name": "Jesus of Suburbia",
+      "genders": "Punk rock",
+      "duration": 2,
+      "id": 1
     }
   },
   "types": {
@@ -29,6 +56,12 @@
     "__00002__": "Array",
     "__00003__": "Array",
     "__00004__": "IdAutoIncrement",
-    "__00005__": "Author"
+    "__00005__": "IdAutoIncrement",
+    "__00006__": "IdAutoIncrement",
+    "__00007__": "Author",
+    "__00008__": "Array",
+    "__00009__": "Album",
+    "__00010__": "Array",
+    "__00011__": "Track"
   }
 }

@@ -1,9 +1,6 @@
 
 const picklify = require('picklify'); // para cargar/guarfar unqfy
 const fs = require('fs'); // para cargar/guarfar unqfy
-const ar = require('./src/entity/Author')
-const al = require('./src/entity/Album')
-const idIncrement = require('./src/entity/IdAutoIncrement');
 const Author = require('./src/entity/Author');
 const IdAutoIncrement = require('./src/entity/IdAutoIncrement');
 const IdAutoIncrementPlaylist = require('./src/entity/sequence/IdAutoIncrementPlaylist');
@@ -46,7 +43,7 @@ class UNQfy {
     try {
       this.idIncrementArtist.idAutoIncrement();
       console.log(this.idIncrementArtist.id);
-      let artist = new ar(artistData.name, artistData.country);
+      let artist = new Author(artistData.name, artistData.country);
       artist.setId(this.idIncrementArtist.id);
       this.artists.push(artist);
 
@@ -75,11 +72,16 @@ class UNQfy {
        - una propiedad name (string)
        - una propiedad year (number)
     */
-    let artistRecovered = this.artists.filter((a) => a.id === artistId)[0];
-    const album = new al(albumData.name, albumData.year);
-    this.artistRecovered.setAlbums(album);
+    this.idIncrementAlbum.idAutoIncrement();
+    console.log(artistId, albumData);
+    let artistRecovered = this.artists.filter(a => a.id === parseInt(artistId.idArt))[0];
+    let album = new Album(albumData.name, albumData.year);
+    album.setId(this.idIncrementAlbum.id);
+    artistRecovered.setAlbum(album);
+    console.log(album);
+    console.log(artistRecovered);
 
-    return album
+    return album;
   }
 
 
@@ -95,19 +97,50 @@ class UNQfy {
         - una propiedad duration (number),
         - una propiedad genres (lista de strings)
     */
+    this.idIncrementTrack.idAutoIncrement();
+    console.log(albumId, trackData);
+    let albumRecovered = this.getArtistAlbum(albumId.idAlbum);
+    console.log(albumRecovered);
+    let track = new Track(trackData.name, trackData.album, trackData.duration);
+    track.setId(this.idIncrementTrack.id);
+    albumRecovered.setTrack(track);
+    console.log(track);
+    console.log(albumRecovered);
+
+    return Track;
+
+  }
+
+  getArtistAlbum(id) {
+    let album = new Album();
+    this.artists.forEach(a => {
+      let albums = this.getAlbums(id, a.getAlbums());
+      if (albums.length === 1) { album = albums[0] };
+    });
+    //console.log(album);
+    return album;
+  }
+
+  getAlbums(id, albums) {
+    return albums.filter(a => a.id === parseInt(id));
   }
 
   getArtistById(id) {
-    console.log(id)
-    return this.artists.filter((a) => a.getId === id.id)
+    console.log(id);
+    const artist = this.artists.filter(a => a.id === parseInt(id.id))[0];
+    console.log(artist);
+    return artist
   }
 
   getAlbumById(id) {
-
+    console.log(id);
+    const album = this.getArtistAlbum(id.idAlbum);
+    console.log(album);
+    return album;
   }
 
   getTrackById(id) {
-
+    
   }
 
   getPlaylistById(id) {

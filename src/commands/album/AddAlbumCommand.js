@@ -2,7 +2,11 @@ const Command = require('../Command');
 
 class AddAlbumCommand extends Command {
     execute(args) { 
-        this.unqfy.addAlbum(this.paramsBuilder(args));
+        const params = this.paramsBuilder(args);
+        let idArtista = {idArt: params.idArt};
+        let albumData = {name: params.name, year: params.year};
+
+        this.unqfy.addAlbum(idArtista,albumData);
     }
  }
 

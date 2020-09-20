@@ -7,7 +7,7 @@ class Album {
      this.year = year;
      this.recordCompany;
      this.duration;
-     this.tracks;
+     this.tracks = [];
      this.author;
    }
 
@@ -55,8 +55,8 @@ class Album {
       return this.tracks;
    }
 
-   setTracks(tracks) {
-     this.tracks = tracks;
+   setTrack(track) {
+     this.tracks.push(track);
    }
 
    getAuthor() {

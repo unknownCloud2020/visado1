@@ -1,69 +1,71 @@
 
 class Track {
 
-   let id
-   let name
-   let format
-   let genders = []
-   let playList
-   let album
+  constructor(name, genders, duration) {
+    this.id;
+    this.name = name;
+    this.format;
+    this.genders = genders;
+    this.playList;
+    this.album;
+    this.duration = duration;
+  }
 
-   constructor(id,name,format,genders,playList,album) {
-     this.id = id
-     this.name = name
-     this.format = format
-     this.genders = genders
-     this.playList = playList
-     this.album = album
-   }
+  getId() {
+    return this.id;
+  }
 
-   function getId() {
-      return this.id
-   }
+  setId(id) {
+    this.id = id;
+  }
 
-   function setId(id) {
-      this.id = id
-   }
+  getName() {
+    return this.name;
+  }
 
-   function getName() {
-      return this.id
-   }
+  setName(name) {
+    this.name = name;
+  }
 
-   function setName(name) {
-     this.name = name
-   }
+  getFormat() {
+    return this.format;
+  }
 
-   function getFormat() {
-     return this.format
-   }
+  setFormat(format) {
+    this.format = format;
+  }
 
-   function setFormat(format) {
-     this.format = format
-   }
+  getGenders() {
+    return this.genders;
+  }
 
-   function getGenders() {
-     return this.genders
-   }
+  setGenders(genders) {
+    this.genders = genders;
+  }
 
-   function setGenders(genders) {
-     this.genders = genders
-   }
+  getPlayList() {
+    return this.playList;
+  }
 
-   function getPlayList() {
-     return this.playList
-   }
+  setPlayList(playList) {
+    this.playList = playList;
+  }
 
-   function setPlayList(playList) {
-     this.playList = playList
-   }
+  getAlbum() {
+    return this.album;
+  }
 
-   function getAlbum() {
-     return this.album
-   }
+  setAlbum(album) {
+    this.album = album;
+  }
 
-   function setAlbum(album) {
-     this.album = album
-   }
+  getDuration() {
+    return this.duration;
+  }
+
+  setDuration(duration) {
+    this.duration = duration;
+  }
 
 }
 
