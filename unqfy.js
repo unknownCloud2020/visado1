@@ -5,6 +5,8 @@ const Author = require('./src/entity/Author');
 const IdAutoIncrement = require('./src/entity/IdAutoIncrement');
 const IdAutoIncrementPlaylist = require('./src/entity/sequence/IdAutoIncrementPlaylist');
 const Playlist = require('./src/entity/Playlist');
+const Album = require('./src/entity/Album');
+const Track = require('./src/entity/Track');
 
 class UNQfy {
 
@@ -25,8 +27,10 @@ class UNQfy {
         duration: 2000
       }
     ];
-    this.idIncrementArtist = new idIncrement();
+    this.idIncrementArtist = new IdAutoIncrement();
     this.idIncrementPlaylist = new IdAutoIncrementPlaylist();
+    this.idIncrementAlbum = new IdAutoIncrement();
+    this.idIncrementTrack = new IdAutoIncrement();
   }
 
 
@@ -243,7 +247,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist];
+    const classes = [UNQfy, Author, IdAutoIncrement,IdAutoIncrementPlaylist, Album, Track];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }
