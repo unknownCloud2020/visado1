@@ -172,15 +172,49 @@ class UNQfy {
     }
   }
 
-
-  printPlaylist(idPlaylist) {
-    const pl = this.playlists.find(p => p.id === idPlaylist);
-    console.log('==============================================================');
-    console.log('Name: ', pl.name);
-    console.log('Dutarion: ', pl.duration);
-    console.log('Genres: ', pl.genres.join(', '));
-    pl.tracks.forEach(t => { console.log('Track: ', t.name, 'Album: ', t.album.name, 'Artist: ', t.album.artist.name); });
+  printPlaylists() {
+    this.playlists.forEach(pl => {
+      console.log('==============================================================');
+      console.log('Name: ', pl.name);
+      console.log('Dutarion: ', pl.duration);
+      console.log('Genres: ', pl.genres.join(', '));
+      pl.tracks.forEach(t => { console.log('Track: ', t.name, 'Album: ', t.album.name, 'Artist: ', t.album.artist.name); });
+    });
   }
+
+  printArtists() {
+    this.artists.forEach(artist => {
+      console.log('==============================================================');
+      this.printPrincipalInfo(artist);
+    });
+  }
+  printAlbums() {
+    const allAlbums = this.artist.map(artist => artist.albums);
+    allAlbums.forEach(album => {
+      console.log('==============================================================');
+      this.printPrincipalInfo(album);
+    });
+  }
+
+  printTracks() {
+    const allTracks = this.artist.flatMap(track => track.albums.map(album => album.tracks));
+    allTracks.forEach(track => {
+      console.log('==============================================================');
+      this.printPrincipalInfo(track);
+    });
+  }
+
+  printPrincipalInfo(content) {
+    const properties = content.entries();
+    console.log('==============================================================');
+    properties.forEach(propertie => {
+      if (!this.isDetail(propertie)) {
+        console.log(`- ${propertie.get(0)}: `, propertie.get(1));
+      }    
+    });
+  }
+
+  isDetail(propertie) { return Array.isArray(propertie.get(1)); }
 
   save(filename) {
     const serializedData = picklify.picklify(this);
