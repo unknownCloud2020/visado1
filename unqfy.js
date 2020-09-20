@@ -130,7 +130,7 @@ class UNQfy {
   }
 
   getTrackById(id) {
-    
+
   }
 
   getPlaylistById(id) {
@@ -161,6 +161,7 @@ class UNQfy {
         * un metodo duration() que retorne la duración de la playlist.
         * un metodo hasTrack(aTrack) que retorna true si aTrack se encuentra en la playlist.
     */
+    try {
       const idPlaylist = this.idIncrementPlaylist.idAutoIncrement();
       const newPlaylist = new Playlist(idPlaylist, name, genresToInclude);
       const tracks = this.getTracksMatchingGenres(genresToInclude);
@@ -170,6 +171,7 @@ class UNQfy {
       throw error;
     }
   }
+
 
   printPlaylist(idPlaylist) {
     const pl = this.playlists.find(p => p.id === idPlaylist);
@@ -188,7 +190,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Author, IdAutoIncrement,IdAutoIncrementPlaylist, Album, Track];
+    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 }
