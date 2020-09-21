@@ -58,16 +58,34 @@ class Playlist {
     return total + track.duration;
   }
 
-  generateListByGenres(tracks, maxDuration) {
+  generateListByTracks(tracks, maxDuration) {
     let tracksInGenres = tracks;
-    while (this.calculateDuration() < maxDuration && tracksInGenres.length > 0) {
-      const randomTrack = tracksInGenres[Math.floor(Math.random() * tracksInGenres.length)];
-      if ((this.calculateDuration() + randomTrack.duration) <= maxDuration) {
+    while (this.canAddTrack(tracksInGenres, maxDuration)) {
+      const randomTrack = this.getRandomTrack(tracksInGenres);
+      if (!this.exceedsDuration(randomTrack, maxDuration)) {
         this.addTrack(randomTrack);
+        tracksInGenres = this.removeTrackIfInList(tracksInGenres);
       } else {
-        tracksInGenres = tracksInGenres.filter(t => !this.hasTrack(t));
+        tracksInGenres = tracksInGenres.filter(track => track.id !== randomTrack.id);
       }
+      
     }
+  }
+
+  canAddTrack(tracks, maxDuration) {
+    return this.calculateDuration() < maxDuration && tracks.length > 0;
+  }
+
+  getRandomTrack(tracks) {
+    return tracks[Math.floor(Math.random() * tracks.length)];
+  }
+
+  exceedsDuration(randomTrack, maxDuration) {
+    return (this.calculateDuration() + randomTrack.duration) > maxDuration;
+  }
+
+  removeTrackIfInList(tracks) {
+    return tracks.filter(t => !this.hasTrack(t));
   }
 }
 

@@ -149,8 +149,8 @@ class UNQfy {
     try {
       const idPlaylist = this.idIncrementPlaylist.idAutoIncrement();
       const newPlaylist = new Playlist(idPlaylist, name, genresToInclude);
-      const tracks = this.getTracksMatchingGenres(genresToInclude);
-      newPlaylist.generateListByGenres(tracks, maxDuration);
+      const tracksInGenres = this.getTracksMatchingGenres(genresToInclude);
+      newPlaylist.generateListByTracks(tracksInGenres, maxDuration);
       return newPlaylist;
     } catch (error) {
       throw error;
