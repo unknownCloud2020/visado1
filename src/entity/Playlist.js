@@ -25,7 +25,7 @@ class Playlist {
     this.name = name;
   }
 
-  getDuration() {
+  duration() {
     return this.duration;
   }
 
@@ -34,8 +34,8 @@ class Playlist {
   }
 
   addTrack(track) {
+    this.tracks.push(track);
     this.setDuration(this.calculateDuration());
-    return this.tracks.push(track);
   }
 
   getTracks() {
@@ -47,7 +47,7 @@ class Playlist {
   }
 
   hasTrack(aTrack) {
-    return this.tracks.find(t => t.id === aTrack.id);
+    return this.tracks.some(t => t.id === aTrack.id);
   }
 
   calculateDuration() {
@@ -59,13 +59,16 @@ class Playlist {
   }
 
   generateListByGenres(tracks, maxDuration) {
-    console.log("generateListByGenres", this.genres);
-    let tracksInGenres = tracks.filter(t => this.genres.includes(t.genre));
-    console.log('tracksInGenres', tracksInGenres);
-    while (this.calculateDuration() < maxDuration) {
+    let tracksInGenres = tracks;
+    while (this.calculateDuration() < maxDuration && tracksInGenres.length > 0) {
       const randomTrack = tracksInGenres[Math.floor(Math.random() * tracksInGenres.length)];
-      this.addTrack(randomTrack);
-      tracksInGenres = tracksInGenres.filter(t => !this.hasTrack(t));
+      if ((this.calculateDuration() + randomTrack.duration) <= maxDuration) {
+        this.addTrack(randomTrack);
+      } else if (tracksInGenres.length > 0) {
+        tracksInGenres = tracksInGenres.filter(t => t.id !== randomTrack.id);
+      } else {
+        tracksInGenres = tracksInGenres.filter(t => !this.hasTrack(t));
+      }
     }
   }
 }

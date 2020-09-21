@@ -6,7 +6,7 @@ class AddTrackCommand extends Command {
         let albumId = { idAlbum: params.idAlbum };
         let trackData = { name: params.name, duration: params.duration ,album: params.album };
        
-        this.unqfy.addTrack(albumId,trackData);
+        this.unqfy.addTrack(albumId.idAlbum,trackData);
     }
 }
 

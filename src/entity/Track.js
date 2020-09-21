@@ -1,13 +1,13 @@
 
 class Track {
 
-  constructor(name, genders, duration) {
+  constructor(name, album, duration, genres) {
     this.id;
     this.name = name;
     this.format;
-    this.genders = genders;
+    this.genres = genres;
     this.playList;
-    this.album;
+    this.album = album;
     this.duration = duration;
   }
 

@@ -32,16 +32,9 @@ class UNQfy {
     */
     try {
       this.idIncrementArtist.idAutoIncrement();
-      console.log(this.idIncrementArtist.id);
       let artist = new Author(artistData.name, artistData.country);
       artist.setId(this.idIncrementArtist.id);
       this.artists.push(artist);
-
-      console.log('addArtist');
-      console.log('name: ', artist.name);
-      console.log('country: ', artist.country);
-      console.log('id: ', artist.id)
-      console.log(this.artists[0])
 
       return artist;
 
@@ -63,13 +56,10 @@ class UNQfy {
        - una propiedad year (number)
     */
     this.idIncrementAlbum.idAutoIncrement();
-    console.log(artistId, albumData);
-    let artistRecovered = this.artists.filter(a => a.id === parseInt(artistId.idArt))[0];
+    let artistRecovered = this.artists.filter(a => a.id === parseInt(artistId))[0];
     let album = new Album(albumData.name, albumData.year);
     album.setId(this.idIncrementAlbum.id);
     artistRecovered.setAlbum(album);
-    console.log(album);
-    console.log(artistRecovered);
 
     return album;
   }
@@ -88,16 +78,12 @@ class UNQfy {
         - una propiedad genres (lista de strings)
     */
     this.idIncrementTrack.idAutoIncrement();
-    console.log(albumId, trackData);
-    let albumRecovered = this.getArtistAlbum(albumId.idAlbum);
-    console.log(albumRecovered);
-    let track = new Track(trackData.name, trackData.album, trackData.duration);
+    let albumRecovered = this.getArtistAlbum(albumId);
+    let track = new Track(trackData.name, trackData.album, trackData.duration, trackData.genres);
     track.setId(this.idIncrementTrack.id);
     albumRecovered.setTrack(track);
-    console.log(track);
-    console.log(albumRecovered);
 
-    return Track;
+    return track;
 
   }
 
@@ -140,13 +126,16 @@ class UNQfy {
   // genres: array de generos(strings)
   // retorna: los tracks que contenga alguno de los generos en el parametro genres
   getTracksMatchingGenres(genres) {
-
+    const albumes = this.artists.flatMap(artist => artist.albums);
+    const tracks = albumes.flatMap(album => album.tracks);
+    const trackInGenres = tracks.filter(t => t.genres.some(g => genres.includes(g)));
+    return trackInGenres;
   }
 
   // artistName: nombre de artista(string)
   // retorna: los tracks interpredatos por el artista con nombre artistName
   getTracksMatchingArtist(artistName) {
-
+    return this.artists.filter(artist => artist.name === artistName).flatMap(artist => artist.albums.flatMap(album => album.tracks));
   }
 
 
