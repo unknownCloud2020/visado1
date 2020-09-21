@@ -7,6 +7,7 @@ const IdAutoIncrementPlaylist = require('./src/entity/sequence/IdAutoIncrementPl
 const Playlist = require('./src/entity/Playlist');
 const Album = require('./src/entity/Album');
 const Track = require('./src/entity/Track');
+const { isObject } = require('util');
 
 class UNQfy {
 
@@ -257,37 +258,55 @@ class UNQfy {
 
   printArtists() {
     this.artists.forEach(artist => {
-      console.log('==============================================================');
       this.printPrincipalInfo(artist);
     });
   }
   printAlbums() {
-    const allAlbums = this.artist.map(artist => artist.albums);
+    const allAlbums = this.artists.map(artist => artist.albums);
     allAlbums.forEach(album => {
-      console.log('==============================================================');
       this.printPrincipalInfo(album);
     });
   }
 
   printTracks() {
-    const allTracks = this.artist.flatMap(track => track.albums.map(album => album.tracks));
+    const allTracks = this.artists.flatMap(track => track.albums.map(album => album.tracks));
     allTracks.forEach(track => {
-      console.log('==============================================================');
       this.printPrincipalInfo(track);
     });
   }
 
   printPrincipalInfo(content) {
-    const properties = content.entries();
+    const properties = Object.entries(content);
+    console.log(properties)
     console.log('==============================================================');
     properties.forEach(propertie => {
       if (!this.isDetail(propertie)) {
-        console.log(`- ${propertie.get(0)}: `, propertie.get(1));
+        console.log(`- ${propertie[0] }: `, propertie[1]);
+      } else if (this.isObject(propertie[1])) {
+        this.printObjectsInArray(propertie);
+      } else {
+        console.log("soy valores")
+        this.printValuesInArray(propertie);
       }
     });
   }
 
-  isDetail(propertie) { return Array.isArray(propertie.get(1)); }
+  isDetail(propertie) { return Array.isArray(propertie[1]); }
+
+  isObject(propertie) { return typeof propertie === 'object' && propertie !== null; } 
+  
+  printObjectsInArray(content) {
+    const properties = Object.entries(content);
+    properties.forEach(propertie => {
+      if (!this.isDetail(propertie)) {
+        console.log(`- ${propertie[0] }: `, propertie[1]);
+      }
+    });
+  }
+
+  printValuesInArray(content) {
+    console.log(`- ${content[0] }: `, content[1].join(', '));
+  }
 
   save(filename) {
     const serializedData = picklify.picklify(this);
