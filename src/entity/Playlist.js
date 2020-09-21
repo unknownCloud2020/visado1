@@ -4,7 +4,6 @@ class Playlist {
   constructor(id, name, genres) {
     this.id = id;
     this.name = name;
-    this.duration = 0;
     this.genres = genres;
     this.tracks = [];
   }
@@ -23,10 +22,6 @@ class Playlist {
 
   setName(name) {
     this.name = name;
-  }
-
-  duration() {
-    return this.duration;
   }
 
   setDuration(duration) {
@@ -50,7 +45,7 @@ class Playlist {
     return this.tracks.some(t => t.id === aTrack.id);
   }
 
-  calculateDuration() {
+  duration() {
     return this.tracks.reduce(this.getSumDuration, 0);
   }
 
@@ -73,7 +68,7 @@ class Playlist {
   }
 
   canAddTrack(tracks, maxDuration) {
-    return this.calculateDuration() < maxDuration && tracks.length > 0;
+    return this.dutarion() < maxDuration && tracks.length > 0;
   }
 
   getRandomTrack(tracks) {
@@ -81,7 +76,7 @@ class Playlist {
   }
 
   exceedsDuration(randomTrack, maxDuration) {
-    return (this.calculateDuration() + randomTrack.duration) > maxDuration;
+    return (this.duration() + randomTrack.duration) > maxDuration;
   }
 
   removeTrackIfInList(tracks) {
