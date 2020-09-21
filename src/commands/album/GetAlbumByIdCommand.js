@@ -2,7 +2,8 @@ const Command = require('../Command');
 
 class GetAlbumByIdCommand extends Command {
     execute(args) { 
-        this.unqfy.getAlbumById(this.paramsBuilder(args));
+        const id = parseInt(args[1]);
+        this.unqfy.getAlbumById(id);
     }
  }
 

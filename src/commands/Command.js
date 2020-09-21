@@ -20,6 +20,7 @@ class Command {
     }
 
     parseValueByType(value) {
+        
         // si es number
         if (!Number.isNaN(parseInt(value))) {
             return parseInt(value);

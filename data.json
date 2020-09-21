@@ -9,84 +9,63 @@
     "__00001__": {
       "artists": "__00002__",
       "playlists": "__00003__",
-      "tracks": "__00004__",
-      "idIncrementArtist": "__00005__",
-      "idIncrementPlaylist": "__00006__",
-      "idIncrementAlbum": "__00007__",
-      "idIncrementTrack": "__00008__"
+      "idIncrementArtist": "__00004__",
+      "idIncrementPlaylist": "__00005__",
+      "idIncrementAlbum": "__00006__",
+      "idIncrementTrack": "__00007__"
     },
     "__00002__": {
-      "0": "__00009__"
+      "0": "__00008__"
     },
     "__00003__": {},
     "__00004__": {
-      "0": "__00010__",
-      "1": "__00011__"
+      "id": 1
     },
     "__00005__": {
-      "id": 1
-    },
-    "__00006__": {
       "id": 0
     },
+    "__00006__": {
+      "id": 2
+    },
     "__00007__": {
-      "id": 1
+      "id": 6
     },
     "__00008__": {
+      "name": "Guns n Roses",
+      "country": "USA",
+      "albums": "__00009__",
       "id": 1
     },
     "__00009__": {
-      "name": "Billie Joe Armstrong",
-      "country": "E.E.U.U",
-      "albums": "__00012__",
-      "id": 1
+      "0": "__00010__"
     },
     "__00010__": {
-      "id": 1,
-      "name": "asd",
-      "genre": "rock",
-      "duration": 2000
+      "name": "Appetite for Destruction",
+      "year": 1987,
+      "tracks": "__00011__",
+      "id": 2
     },
     "__00011__": {
-      "id": 2,
-      "name": "asd",
-      "genre": "rock",
-      "duration": 2000
+      "0": "__00012__"
     },
     "__00012__": {
-      "0": "__00013__"
-    },
-    "__00013__": {
-      "name": "American Idiot",
-      "year": 2004,
-      "tracks": "__00014__",
-      "id": 1
-    },
-    "__00014__": {
-      "0": "__00015__"
-    },
-    "__00015__": {
-      "name": "Jesus of Suburbia",
-      "genders": "Punk rock",
-      "duration": 2,
-      "id": 1
+      "name": "Welcome to the jungle",
+      "duration": 200,
+      "id": 6
     }
   },
   "types": {
     "__00001__": "UNQfy",
     "__00002__": "Array",
     "__00003__": "Array",
-    "__00004__": "Array",
-    "__00005__": "IdAutoIncrement",
-    "__00006__": "IdAutoIncrementPlaylist",
+    "__00004__": "IdAutoIncrement",
+    "__00005__": "IdAutoIncrementPlaylist",
+    "__00006__": "IdAutoIncrement",
     "__00007__": "IdAutoIncrement",
-    "__00008__": "IdAutoIncrement",
-    "__00009__": "Author",
-    "__00010__": "Object",
-    "__00011__": "Object",
-    "__00012__": "Array",
-    "__00013__": "Album",
-    "__00014__": "Array",
-    "__00015__": "Track"
+    "__00008__": "Author",
+    "__00009__": "Array",
+    "__00010__": "Album",
+    "__00011__": "Array",
+    "__00012__": "Track"
   }
 }

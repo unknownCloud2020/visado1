@@ -2,7 +2,8 @@ const Command = require('../Command');
 
 class GetTrackByIdCommand extends Command {
     execute(args) { 
-        this.unqfy.getTrackById(this.paramsBuilder(args));
+        const id = parseInt(args[1]);
+        this.unqfy.getTrackById(id);
     }
 }
 
