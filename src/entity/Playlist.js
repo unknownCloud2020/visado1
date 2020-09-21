@@ -64,8 +64,6 @@ class Playlist {
       const randomTrack = tracksInGenres[Math.floor(Math.random() * tracksInGenres.length)];
       if ((this.calculateDuration() + randomTrack.duration) <= maxDuration) {
         this.addTrack(randomTrack);
-      } else if (tracksInGenres.length > 0) {
-        tracksInGenres = tracksInGenres.filter(t => t.id !== randomTrack.id);
       } else {
         tracksInGenres = tracksInGenres.filter(t => !this.hasTrack(t));
       }

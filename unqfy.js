@@ -32,14 +32,14 @@ class UNQfy {
     */
     try {
       this.idIncrementArtist.idAutoIncrement();
-      let artist = new Author(artistData.name, artistData.country);
+      const artist = new Author(artistData.name, artistData.country);
       artist.setId(this.idIncrementArtist.id);
       this.artists.push(artist);
 
       return artist;
 
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
 
   }
@@ -56,8 +56,8 @@ class UNQfy {
        - una propiedad year (number)
     */
     this.idIncrementAlbum.idAutoIncrement();
-    let artistRecovered = this.artists.filter(a => a.id === parseInt(artistId))[0];
-    let album = new Album(albumData.name, albumData.year);
+    const artistRecovered = this.artists.filter(a => a.id === parseInt(artistId))[0];
+    const album = new Album(albumData.name, albumData.year);
     album.setId(this.idIncrementAlbum.id);
     artistRecovered.setAlbum(album);
 
@@ -78,8 +78,8 @@ class UNQfy {
         - una propiedad genres (lista de strings)
     */
     this.idIncrementTrack.idAutoIncrement();
-    let albumRecovered = this.getArtistAlbum(albumId);
-    let track = new Track(trackData.name, trackData.album, trackData.duration, trackData.genres);
+    const albumRecovered = this.getArtistAlbum(albumId);
+    const track = new Track(trackData.name, trackData.album, trackData.duration, trackData.genres);
     track.setId(this.idIncrementTrack.id);
     albumRecovered.setTrack(track);
 
@@ -90,8 +90,8 @@ class UNQfy {
   getArtistAlbum(id) {
     let album = new Album();
     this.artists.forEach(a => {
-      let albums = this.getAlbums(id, a.getAlbums());
-      if (albums.length === 1) { album = albums[0] };
+      const albums = this.getAlbums(id, a.getAlbums());
+      if (albums.length === 1) { album = albums[0]; }
     });
     //console.log(album);
     return album;
@@ -102,16 +102,12 @@ class UNQfy {
   }
 
   getArtistById(id) {
-    console.log(id);
     const artist = this.artists.filter(a => a.id === parseInt(id.id))[0];
-    console.log(artist);
-    return artist
+    return artist;
   }
 
   getAlbumById(id) {
-    console.log(id);
     const album = this.getArtistAlbum(id.idAlbum);
-    console.log(album);
     return album;
   }
 
