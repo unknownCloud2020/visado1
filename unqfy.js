@@ -317,7 +317,7 @@ class UNQfy {
     }
   }
   printAlbums() {
-    const allAlbums = this.artists.map(artist => artist.albums);
+    const allAlbums = this.artists.flatMap(artist => artist.albums);
     if (this.hasItems(allAlbums)) {
       allAlbums.forEach(album => {
         this.printPrincipalInfo(album);
@@ -338,7 +338,7 @@ class UNQfy {
     const properties = Object.entries(content);
     properties.forEach(propertie => {
       if (!this.isDetail(propertie)) {
-        console.log(`- ${propertie[0]}: `, propertie[1]);
+        console.log(`- ${content[0]}: `, propertie[1].length);
       }
     });
   }
