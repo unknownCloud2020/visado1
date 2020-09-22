@@ -68,6 +68,10 @@ class Author {
     this.albums.push(album);
   }
 
+  setAlbums(albums) {
+    this.albums = albums;
+  }
+
   getUnqfy() {
     return this.unqfy;
   }

@@ -7,18 +7,21 @@ const IdAutoIncrementPlaylist = require('./src/entity/sequence/IdAutoIncrementPl
 const Playlist = require('./src/entity/Playlist');
 const Album = require('./src/entity/Album');
 const Track = require('./src/entity/Track');
+const { isObject } = require('util');
+const User = require('./src/entity/User');
 
 class UNQfy {
 
   constructor() {
     this.artists = [];
     this.playlists = [];
+    this.users = [];
     this.idIncrementArtist = new IdAutoIncrement();
     this.idIncrementPlaylist = new IdAutoIncrementPlaylist();
     this.idIncrementAlbum = new IdAutoIncrement();
     this.idIncrementTrack = new IdAutoIncrement();
+    this.idIncrementUser = new IdAutoIncrement();
   }
-
 
   // artistData: objeto JS con los datos necesarios para crear un artista
   //   artistData.name (string)
@@ -76,6 +79,15 @@ class UNQfy {
     return album;
   }
 
+  isAlbumArtist(id, albums) {
+    return albums.some(a => a.id === id);
+  }
+
+  getArtistToAlbum(id) {
+    const artist = this.artists.filter(a => this.isAlbumArtist(id, a.albums))[0];
+    //console.log(artist);
+    return artist;
+  }
 
   // trackData: objeto JS con los datos necesarios para crear un track
   //   trackData.name (string)
@@ -89,8 +101,10 @@ class UNQfy {
         - una propiedad duration (number),
         - una propiedad genres (lista de strings)
     */
+
+    //buscar el album y agregar le el track y actualizar el artista de dicho album que tiene el track
     this.idIncrementTrack.idAutoIncrement();
-    const albumRecovered = this.getArtistAlbum(albumId);
+    const albumRecovered = this.getAlbumById(albumId);
     const track = new Track(trackData.name, trackData.album, trackData.duration, trackData.genres);
     track.setId(this.idIncrementTrack.id);
     albumRecovered.setTrack(track);
@@ -100,17 +114,17 @@ class UNQfy {
   }
 
   getArtistAlbum(id) {
-    let album = new Album();
+    let album = undefined;
     this.artists.forEach(a => {
-      const albums = this.getAlbums(id, a.getAlbums());
+      const albums = this.getAlbums(id, a.albums);
       if (albums.length === 1) { album = albums[0]; }
     });
-    //console.log(album);
     return album;
   }
 
   getAlbums(id, albums) {
-    return albums.filter(a => a.id === parseInt(id));
+    const newAlbums = albums.filter(a => a.id === id);
+    return newAlbums;
   }
 
   getArtistById(id) {
@@ -119,17 +133,115 @@ class UNQfy {
   }
 
   getAlbumById(id) {
-    const album = this.getArtistAlbum(id.idAlbum);
+    const album = this.getArtistAlbum(id);
     return album;
   }
 
-  getTrackById(id) {
+  getAlbumsToArtist() {
+    const albums = this.artists.flatMap(artist => artist.albums);
+    return albums;
+  }
 
+  getTracksToAlbumArtist() {
+    const tracks = this.getAlbumsToArtist().flatMap(album => album.tracks);
+    return tracks;
+  }
+
+  getTrackById(id) {
+    const track = this.getTracksToAlbumArtist().filter(t => t.id === id)[0];
+    return track;
   }
 
   getPlaylistById(id) {
-
+    const playlist = this.playlists.filter(p => p.id === id);
+    return playlist;
   }
+
+  removeArtist(id) {
+    const index = this.artists.findIndex(a => a.id === id);
+    if (index != -1) {
+      this.artists.splice(index, 1);
+    }
+  }
+
+  removeAlbum(id) {
+    let artist = this.getArtistToAlbum(id);
+    const albums = artist.albums;
+    const indexAlbum = albums.findIndex(a => a.id === id);
+    albums.splice(indexAlbum, 1);
+  }
+
+  getArtistAlbumTrack(id) {
+    const artist = this.artists.filter(a => this.isAlbumTrack(id, a.albums))[0];
+    return artist;
+  }
+
+  isAlbumTrack(id, albums) {
+    return albums.some(a => this.isTrack(id, a.tracks))
+  }
+
+  isTrack(id, tracks) {
+    return tracks.some(a => a.id === id);
+  }
+
+  updateAlbums(id, albums) {
+    albums.forEach(a => this.updateTracks(id, a.tracks));
+  }
+
+  updateTracks(id, tracks) {
+    const index = tracks.findIndex(t => t.id === id);
+    tracks.splice(index, 1);
+  }
+
+  removeTrack(id) {
+    const artist = this.getArtistAlbumTrack(id);
+    this.updateAlbums(id, artist.albums);
+  }
+
+  printArtistsFor(string) {
+    const artistsMatching = this.artists.filter(a => a.name.toLowerCase().includes(string.toLowerCase()));
+    artistsMatching.forEach(a => {
+      this.printPrincipalInfo(a);
+    });
+  }
+
+  printAlbumsFor(string) {
+    const allAlbums = this.artists.flatMap(artist => artist.albums);
+    allAlbums.filter(a => a.name.toLowerCase().includes(string.toLowerCase()));
+    allAlbums.forEach(a => {
+      this.printPrincipalInfo(a);
+    });
+  }
+
+  printTracksFor(string) {
+    const allTracks = this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
+    allTracks.filter(t => t.name.toLowerCase().includes(string.toLowerCase()));
+    allTracks.forEach(a => {
+      this.printPrincipalInfo(a);
+    });
+  }
+
+  printTracksForArtist(name) {
+    const allTracks = this.getTracksMatchingArtist(name);
+    allTracks.filter(a => a.name.toLowerCase().includes(string.toLowerCase()));
+    allTracks.forEach(a => {
+      this.printPrincipalInfo(a);
+    });
+  }
+
+
+  printTracksForGenre(genre) {
+    const allTracks = this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
+    allTracks.filter(t => isGenre(t.genres, genre));
+    allTracks.forEach(a => {
+      this.printPrincipalInfo(a);
+    });
+  }
+
+  isGenre(genres, genre) {
+    return genres.some(g => g === genres);
+  }
+
 
   // genres: array de generos(strings)
   // retorna: los tracks que contenga alguno de los generos en el parametro genres
@@ -185,8 +297,7 @@ class UNQfy {
     }
   }
   printAlbums() {
-
-    const allAlbums = this.artists.map(artist => artist.albums);
+    const allAlbums = this.artists.flatMap(artist => artist.albums);
     if (this.hasItems(allAlbums)) {
       allAlbums.forEach(album => {
         this.printPrincipalInfo(album);
@@ -195,13 +306,25 @@ class UNQfy {
   }
 
   printTracks() {
-
     const allTracks = this.artists.flatMap(track => track.albums.flatMap(album => album.tracks));
     if (this.hasItems(allTracks)) {
       allTracks.forEach(track => {
         this.printPrincipalInfo(track);
       });
     }
+  }
+
+  printObjectsInArray(content) {
+    const properties = Object.entries(content);
+    properties.forEach(propertie => {
+      if (!this.isDetail(propertie)) {
+        console.log(`- ${content[0]}: `, propertie[1].length);
+      }
+    });
+  }
+
+  printValuesInArray(content) {
+    console.log(`- ${content[0]}: `, content[1].join(', '));
   }
 
   printPrincipalInfo(content) {
@@ -229,21 +352,55 @@ class UNQfy {
     return array.length;
   }
 
-  printObjectsInArray(contents) {
-
-    console.log(` ================== ${contents[0]} details =======================================`);
-    contents[1].forEach(content => {
-      const properties = Object.entries(content);
-      properties.forEach(propertie => {
-        console.log(`   - ${propertie[0]}: `, this.isDetail(propertie) ? propertie[1].length : propertie[1]);
-      });
-    });
-    console.log(` ================== ${contents[0]} details end =======================================`);
+  existUser(id) {
+    if (this.searchArtistByName(id)) {
+      throw "The User alredy exist.";
+    }
   }
 
-  printValuesInArray(content) {
-    console.log(`- ${content[0]}: `, content[1].join(', '));
+  searchUserByName(name) {
+    return this.users.some(u => u.id === id);
   }
+
+  addUser(name) {
+    this.existUser(name)
+    this.idIncrementUser.idAutoIncrement();
+    const user = new User(name);
+    user.setId(this.idIncrementUser.id);
+    this.users.push(user);
+    return user;
+  }
+
+  getUser(id) {
+    return this.users.filter(u => u.id === id)[0];
+  } 
+
+  userListensToATrack(idUser,idTrack) {
+    const user = this.getUser(idUser);
+    const track = this.getTrackById(idTrack); 
+    user.setTrack(track);
+  }
+
+  tracksListenedToByUser(id) {
+    const user = this.getUser(id);
+    const tracksUser = user.tracksHeard;
+    return tracksUser;
+  }
+
+  userHowManyTracksHaveYouHeard(id) {
+    const user = this.getUser(id);
+    const numberHeard = user.tracksHeard.reduce((total) => total = total + 1, 0);
+    return numberHeard;
+  }
+
+  //Armar automáticamente  e imprimir en pantalla la lista "This is ..." .
+   //Esta lista contiene los 3 temas más escuchados de un artista dado.
+   //Tenga en cuenta que esta lista siempre es calculada "on the fly".
+  playslistAutomatica(duration) {
+    
+  }
+   
+  
   
   save(filename) {
     const serializedData = picklify.picklify(this);
@@ -253,9 +410,10 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track];
+    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track, User];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
+
 }
 
 // COMPLETAR POR EL ALUMNO: exportar todas las clases que necesiten ser utilizadas desde un modulo cliente

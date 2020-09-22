@@ -1,71 +1,75 @@
 
 class Album {
 
-   constructor(name,year) {
-     this.id ;
-     this.name = name;
-     this.year = year;
-     this.recordCompany;
-     this.duration;
-     this.tracks = [];
-     this.author;
-   }
+  constructor(name, year) {
+    this.id;
+    this.name = name;
+    this.year = year;
+    this.recordCompany;
+    this.duration;
+    this.tracks = [];
+    this.author;
+  }
 
-   getId() {
-      return this.id;
-   }
+  getId() {
+    return this.id;
+  }
 
-   setId(id) {
-      this.id = id;
-   }
+  setId(id) {
+    this.id = id;
+  }
 
-   getName() {
-      return this.name;
-   }
+  getName() {
+    return this.name;
+  }
 
-   setName(name) {
-     this.name = name;
-   }
+  setName(name) {
+    this.name = name;
+  }
 
-   getYear() {
-     return this.year;
-   }
+  getYear() {
+    return this.year;
+  }
 
-   setYear(year) {
-     this.year = year;
-   }
+  setYear(year) {
+    this.year = year;
+  }
 
-   getRecordCompany() {
-     return this.recordCompany;
-   }
+  getRecordCompany() {
+    return this.recordCompany;
+  }
 
-   setRecordCompany(recordCompany) {
-     this.recordCompany = recordCompany;
-   }
+  setRecordCompany(recordCompany) {
+    this.recordCompany = recordCompany;
+  }
 
-   getDuration() {
-     return this.duration;
-   }
+  getDuration() {
+    return this.duration;
+  }
 
-   setDuration(duration) {
-      this.duration = duration;
-   }
+  setDuration(duration) {
+    this.duration = duration;
+  }
 
-   getTracks() {
-      return this.tracks;
-   }
+  getTracks() {
+    return this.tracks;
+  }
 
-   setTrack(track) {
-     this.tracks.push(track);
-   }
+  setTrack(track) {
+    this.tracks.push(track);
+  }
 
-   getAuthor() {
-      return this.authors;
-   }
+  setTracks(tracks) {
+    this.tracks = tracks;
+  }
 
-   setAuthor(author) {
-     this.author = author;
-   }
+  getAuthor() {
+    return this.authors;
+  }
+
+  setAuthor(author) {
+    this.author = author;
+  }
 
 }
 
