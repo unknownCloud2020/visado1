@@ -24,16 +24,16 @@
       "0": "__00011__"
     },
     "__00005__": {
-      "id": 12
+      "id": 1
     },
     "__00006__": {
       "id": 0
     },
     "__00007__": {
-      "id": 24
+      "id": 1
     },
     "__00008__": {
-      "id": 36
+      "id": 6
     },
     "__00009__": {
       "id": 1
@@ -42,7 +42,7 @@
       "name": "Guns n Roses",
       "country": "USA",
       "albums": "__00012__",
-      "id": 12
+      "id": 1
     },
     "__00011__": {
       "name": "alan",
@@ -61,32 +61,35 @@
       "name": "Appetite for Destruction",
       "year": 1987,
       "tracks": "__00018__",
-      "id": 24
+      "id": 1
     },
     "__00015__": {
       "name": "Welcome to the jungle",
       "genres": "__00019__",
       "duration": 200,
-      "id": 33
+      "numberOfTimesListened": 1,
+      "id": 1
     },
     "__00016__": {
       "name": "Welcome to the jungle",
       "genres": "__00020__",
       "duration": 200,
-      "id": 34
+      "numberOfTimesListened": 1,
+      "id": 2
     },
     "__00017__": {
       "name": "Welcome to the jungle",
       "genres": "__00021__",
       "duration": 200,
-      "id": 35
+      "numberOfTimesListened": 1,
+      "id": 3
     },
     "__00018__": {
-      "0": "__00022__",
-      "1": "__00023__",
-      "2": "__00015__",
-      "3": "__00016__",
-      "4": "__00017__",
+      "0": "__00015__",
+      "1": "__00016__",
+      "2": "__00017__",
+      "3": "__00022__",
+      "4": "__00023__",
       "5": "__00024__"
     },
     "__00019__": {
@@ -103,21 +106,34 @@
     },
     "__00022__": {
       "name": "Welcome to the jungle",
+      "genres": "__00025__",
       "duration": 200,
-      "id": 31
+      "numberOfTimesListened": 0,
+      "id": 4
     },
     "__00023__": {
       "name": "Welcome to the jungle",
+      "genres": "__00026__",
       "duration": 200,
-      "id": 32
+      "numberOfTimesListened": 0,
+      "id": 5
     },
     "__00024__": {
       "name": "Welcome to the jungle",
-      "genres": "__00025__",
+      "genres": "__00027__",
       "duration": 200,
-      "id": 36
+      "numberOfTimesListened": 0,
+      "id": 6
     },
     "__00025__": {
+      "0": "rock",
+      "1": "hardrock"
+    },
+    "__00026__": {
+      "0": "rock",
+      "1": "hardrock"
+    },
+    "__00027__": {
       "0": "rock",
       "1": "hardrock"
     }
@@ -147,6 +163,8 @@
     "__00022__": "Track",
     "__00023__": "Track",
     "__00024__": "Track",
-    "__00025__": "Array"
+    "__00025__": "Array",
+    "__00026__": "Array",
+    "__00027__": "Array"
   }
 }

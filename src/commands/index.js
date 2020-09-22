@@ -28,7 +28,8 @@ const PrintAlbumsCommand = require('./album/PrintAlbumsCommand');
 const AddUserCommand = require('./user/AddUserCommad');
 const UserListensToATrackCommand = require('./user/UserListensToATrackCommand');
 const TracksheardUserCommand = require('./user/TracksheardUserCommand');
-const NumberOfTracksHeardUserCommand = require('./user/NumberOfTracksHeardUserCommand')
+const NumberOfTracksHeardUserCommand = require('./user/NumberOfTracksHeardUserCommand');
+const TresMostListenedTracksOfTheMomentUserCommand = require('./user/TresMostListenedTracksOfTheMomentUserCommand');
 
 const commands = new Map();
 // track commands
@@ -63,5 +64,7 @@ commands.set('ADDUSER', AddUserCommand);
 commands.set('USERLISTENSTOATRACK', UserListensToATrackCommand);
 commands.set('TRACKSLISTENEDTOBYUSER', TracksheardUserCommand);
 commands.set('USERHOWMANYTRACKSHAVEYOUHEARD', NumberOfTracksHeardUserCommand);
+commands.set('TRESMOSTLISTENEDTRACKSOFTHEMOMENT', TresMostListenedTracksOfTheMomentUserCommand);
+
 
 module.exports = commands;
