@@ -45,7 +45,7 @@ class Playlist {
     return this.tracks.some(t => t.id === aTrack.id);
   }
 
-  duration() {
+  calculateDuration() {
     return this.tracks.reduce(this.getSumDuration, 0);
   }
 
@@ -68,7 +68,7 @@ class Playlist {
   }
 
   canAddTrack(tracks, maxDuration) {
-    return this.dutarion() < maxDuration && tracks.length > 0;
+    return this.calculateDuration() < maxDuration && tracks.length > 0;
   }
 
   getRandomTrack(tracks) {
@@ -76,7 +76,7 @@ class Playlist {
   }
 
   exceedsDuration(randomTrack, maxDuration) {
-    return (this.duration() + randomTrack.duration) > maxDuration;
+    return (this.calculateDuration() + randomTrack.duration) > maxDuration;
   }
 
   removeTrackIfInList(tracks) {
