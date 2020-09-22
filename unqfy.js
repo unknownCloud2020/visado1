@@ -295,10 +295,15 @@ class UNQfy {
       const newPlaylist = new Playlist(idPlaylist, name, genresToInclude);
       const tracksInGenres = this.getTracksMatchingGenres(genresToInclude);
       newPlaylist.generateListByTracks(tracksInGenres, maxDuration);
+      this.addPlaylist(newPlaylist);
       return newPlaylist;
     } catch (error) {
       throw error;
     }
+  }
+
+  addPlaylist(newPlaylist) {
+    this.playlists.push(newPlaylist);
   }
 
   printPlaylists() {
@@ -372,6 +377,14 @@ class UNQfy {
     return array.length;
   }
   
+  searchByName(name) {
+    const artists = this.artists.filter(artist => artist.name.includes(name));
+    const albums = this.artists.flatMap(artist => artist.albums.filter(album => album.name.includes(name)));
+    const tracks = this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks.filter(track => track.name.includes(name))));
+    const playlists = this.playlists.filter(playlist => playlist.name.includes(name));
+    return { artists, albums, tracks, playlists };
+  }
+
   save(filename) {
     const serializedData = picklify.picklify(this);
     fs.writeFileSync(filename, JSON.stringify(serializedData, null, 2));

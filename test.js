@@ -59,13 +59,13 @@ describe('Add, remove and filter data', () => {
     const track = createAndAddTrack(unqfy, album1.id, 'Roses track', 200, ['pop', 'movie']);
     const playlist = unqfy.createPlaylist('Roses playlist', ['pop'], 1400);
 
-    // const results = unqfy.searchByName('Roses');
-    // assert.deepEqual(results, {
-    //   artists: [artist1],
-    //   albums: [album1],
-    //   tracks: [track],
-    //   playlists: [playlist],
-    // });
+    const results = unqfy.searchByName('Roses');
+    assert.deepEqual(results, {
+      artists: [artist1],
+      albums: [album1],
+      tracks: [track],
+      playlists: [playlist],
+    });
   });
 
   it('should get all tracks matching genres', () => {
