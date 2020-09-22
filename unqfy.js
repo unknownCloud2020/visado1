@@ -170,49 +170,81 @@ class UNQfy {
   }
 
   printPlaylists() {
-    this.playlists.forEach(pl => {
-      console.log('==============================================================');
-      console.log('Name: ', pl.name);
-      console.log('Dutarion: ', pl.duration);
-      console.log('Genres: ', pl.genres.join(', '));
-      pl.tracks.forEach(t => { console.log('Track: ', t.name, 'Album: ', t.album.name, 'Artist: ', t.album.artist.name); });
-    });
+    if (this.hasItems(this.playlists)) {
+      this.playlists.forEach(playlist => {
+        this.printPrincipalInfo(playlist);
+      });
+    }
   }
 
   printArtists() {
-    this.artists.forEach(artist => {
-      console.log('==============================================================');
-      this.printPrincipalInfo(artist);
-    });
+    if (this.hasItems(this.artists)) {
+      this.artists.forEach(artist => {
+        this.printPrincipalInfo(artist);
+      });
+    }
   }
   printAlbums() {
-    const allAlbums = this.artist.map(artist => artist.albums);
-    allAlbums.forEach(album => {
-      console.log('==============================================================');
-      this.printPrincipalInfo(album);
-    });
+
+    const allAlbums = this.artists.map(artist => artist.albums);
+    if (this.hasItems(allAlbums)) {
+      allAlbums.forEach(album => {
+        this.printPrincipalInfo(album);
+      });
+    }
   }
 
   printTracks() {
-    const allTracks = this.artist.flatMap(track => track.albums.map(album => album.tracks));
-    allTracks.forEach(track => {
-      console.log('==============================================================');
-      this.printPrincipalInfo(track);
-    });
+
+    const allTracks = this.artists.flatMap(track => track.albums.flatMap(album => album.tracks));
+    if (this.hasItems(allTracks)) {
+      allTracks.forEach(track => {
+        this.printPrincipalInfo(track);
+      });
+    }
   }
 
   printPrincipalInfo(content) {
-    const properties = content.entries();
+    const properties = Object.entries(content);
     console.log('==============================================================');
     properties.forEach(propertie => {
       if (!this.isDetail(propertie)) {
-        console.log(`- ${propertie.get(0)}: `, propertie.get(1));
+        console.log(`- ${propertie[0]}: `, propertie[1]);
+      } else if (this.isObject(propertie[1])) {
+        this.printObjectsInArray(propertie);
+      } else {
+        this.printValuesInArray(propertie);
       }
     });
   }
 
-  isDetail(propertie) { return Array.isArray(propertie.get(1)); }
+  isDetail(propertie) { return Array.isArray(propertie[1]); }
 
+  isObject(propertie) { return typeof propertie === 'object' && propertie !== null; }
+
+  hasItems(array) {
+    if (!array.length) {
+      console.log("No items to display yet.");
+    }
+    return array.length;
+  }
+
+  printObjectsInArray(contents) {
+
+    console.log(` ================== ${contents[0]} details =======================================`);
+    contents[1].forEach(content => {
+      const properties = Object.entries(content);
+      properties.forEach(propertie => {
+        console.log(`   - ${propertie[0]}: `, this.isDetail(propertie) ? propertie[1].length : propertie[1]);
+      });
+    });
+    console.log(` ================== ${contents[0]} details end =======================================`);
+  }
+
+  printValuesInArray(content) {
+    console.log(`- ${content[0]}: `, content[1].join(', '));
+  }
+  
   save(filename) {
     const serializedData = picklify.picklify(this);
     fs.writeFileSync(filename, JSON.stringify(serializedData, null, 2));
