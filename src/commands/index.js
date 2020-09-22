@@ -25,6 +25,11 @@ const ListAlbumsCommand = require('./album/ListAlbumsCommand');
 const RemoveAlbumCommand = require('./album/RemoveAlbumCommand');
 const PrintAlbumsCommand = require('./album/PrintAlbumsCommand');
 
+const AddUserCommand = require('./user/AddUserCommad');
+const UserListensToATrackCommand = require('./user/UserListensToATrackCommand');
+const TracksheardUserCommand = require('./user/TracksheardUserCommand');
+const NumberOfTracksHeardUserCommand = require('./user/NumberOfTracksHeardUserCommand')
+
 const commands = new Map();
 // track commands
 commands.set('GETTRACKBYID', GetTrackByIdCommand);
@@ -53,5 +58,10 @@ commands.set('GETALBUMBYID', GetAlbumByIdCommand);
 commands.set('LISTALBUMS', ListAlbumsCommand);
 commands.set('REMOVEALBUM', RemoveAlbumCommand);
 commands.set('PRINTALBUMSFOR', PrintAlbumsCommand);
+// user commands
+commands.set('ADDUSER', AddUserCommand);
+commands.set('USERLISTENSTOATRACK', UserListensToATrackCommand);
+commands.set('TRACKSLISTENEDTOBYUSER', TracksheardUserCommand);
+commands.set('USERHOWMANYTRACKSHAVEYOUHEARD', NumberOfTracksHeardUserCommand);
 
 module.exports = commands;
