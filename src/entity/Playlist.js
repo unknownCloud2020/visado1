@@ -4,7 +4,6 @@ class Playlist {
   constructor(id, name, genres) {
     this.id = id;
     this.name = name;
-    this.duration = 0;
     this.genres = genres;
     this.tracks = [];
   }
@@ -23,10 +22,6 @@ class Playlist {
 
   setName(name) {
     this.name = name;
-  }
-
-  duration() {
-    return this.duration;
   }
 
   setDuration(duration) {
