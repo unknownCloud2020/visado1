@@ -8,16 +8,19 @@ const Playlist = require('./src/entity/Playlist');
 const Album = require('./src/entity/Album');
 const Track = require('./src/entity/Track');
 const { isObject } = require('util');
+const User = require('./src/entity/User');
 
 class UNQfy {
 
   constructor() {
     this.artists = [];
     this.playlists = [];
+    this.users = [];
     this.idIncrementArtist = new IdAutoIncrement();
     this.idIncrementPlaylist = new IdAutoIncrementPlaylist();
     this.idIncrementAlbum = new IdAutoIncrement();
     this.idIncrementTrack = new IdAutoIncrement();
+    this.idIncrementUser = new IdAutoIncrement();
   }
 
   // artistData: objeto JS con los datos necesarios para crear un artista
@@ -86,19 +89,6 @@ class UNQfy {
     return artist;
   }
 
-  updateArtistToAlbumTrack(artist, album) {
-    const albums = artist.getAlbums();
-    //console.log(albums[0].tracks)
-    const index = albums.findIndex(a => a.id === album.id);
-    return artist.setAlbums(albums.splice(index, 1, album));
-  }
-
-  updateArtists(artist, album) {
-    const index = this.artists.findIndex(a => a.id === artist.id);
-    let updateArtist = this.updateArtistToAlbumTrack(artist, album);
-    this.artists = this.artists.splice(index, 1, this.updateArtists);
-  }
-
   // trackData: objeto JS con los datos necesarios para crear un track
   //   trackData.name (string)
   //   trackData.duration (number)
@@ -118,17 +108,15 @@ class UNQfy {
     const track = new Track(trackData.name, trackData.album, trackData.duration, trackData.genres);
     track.setId(this.idIncrementTrack.id);
     albumRecovered.setTrack(track);
-    this.updateArtists(this.getArtistToAlbum(albumRecovered.id), albumRecovered);
-    console.log(this.artists);
 
     return track;
 
   }
 
   getArtistAlbum(id) {
-    let album = new Album();
+    let album = undefined;
     this.artists.forEach(a => {
-      const albums = this.getAlbums(id, a.getAlbums());
+      const albums = this.getAlbums(id, a.albums);
       if (albums.length === 1) { album = albums[0]; }
     });
     return album;
@@ -141,13 +129,11 @@ class UNQfy {
 
   getArtistById(id) {
     const artist = this.artists.filter(a => a.id === parseInt(id.id))[0];
-    console.log(artist);
     return artist;
   }
 
   getAlbumById(id) {
     const album = this.getArtistAlbum(id);
-    console.log(album);
     return album;
   }
 
@@ -163,19 +149,16 @@ class UNQfy {
 
   getTrackById(id) {
     const track = this.getTracksToAlbumArtist().filter(t => t.id === id)[0];
-    console.log(track);
     return track;
   }
 
   getPlaylistById(id) {
     const playlist = this.playlists.filter(p => p.id === id);
-    console.log(playlist);
     return playlist;
   }
 
   removeArtist(id) {
     const index = this.artists.findIndex(a => a.id === id);
-    console.log(index)
     if (index != -1) {
       this.artists.splice(index, 1);
     }
@@ -202,19 +185,16 @@ class UNQfy {
   }
 
   updateAlbums(id, albums) {
-    console.log("parametro:", albums)
     albums.forEach(a => this.updateTracks(id, a.tracks));
   }
 
   updateTracks(id, tracks) {
-    console.log(id);
     const index = tracks.findIndex(t => t.id === id);
-    const ts = tracks.splice(index, 1);
-    console.log("trackMoficado:", ts)
+    tracks.splice(index, 1);
   }
 
   removeTrack(id) {
-    let artist = this.getArtistAlbumTrack(id);
+    const artist = this.getArtistAlbumTrack(id);
     this.updateAlbums(id, artist.albums);
   }
 
@@ -376,6 +356,56 @@ class UNQfy {
     }
     return array.length;
   }
+
+  existUser(id) {
+    if (this.searchArtistByName(id)) {
+      throw "The User alredy exist.";
+    }
+  }
+
+  searchUserByName(name) {
+    return this.users.some(u => u.id === id);
+  }
+
+  addUser(name) {
+    this.existUser(name)
+    this.idIncrementUser.idAutoIncrement();
+    const user = new User(name);
+    user.setId(this.idIncrementUser.id);
+    this.users.push(user);
+    return user;
+  }
+
+  getUser(id) {
+    return this.users.filter(u => u.id === id)[0];
+  } 
+
+  userListensToATrack(idUser,idTrack) {
+    const user = this.getUser(idUser);
+    const track = this.getTrackById(idTrack); 
+    user.setTrack(track);
+  }
+
+  tracksListenedToByUser(id) {
+    const user = this.getUser(id);
+    const tracksUser = user.tracksHeard;
+    return tracksUser;
+  }
+
+  userHowManyTracksHaveYouHeard(id) {
+    const user = this.getUser(id);
+    const numberHeard = user.tracksHeard.reduce((total) => total = total + 1, 0);
+    return numberHeard;
+  }
+
+  //Armar automáticamente  e imprimir en pantalla la lista "This is ..." .
+   //Esta lista contiene los 3 temas más escuchados de un artista dado.
+   //Tenga en cuenta que esta lista siempre es calculada "on the fly".
+  playslistAutomatica(duration) {
+    
+  }
+   
+  
   
   searchByName(name) {
     const artists = this.artists.filter(artist => artist.name.includes(name));
@@ -393,7 +423,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track];
+    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track, User];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 
