@@ -1,7 +1,7 @@
 const Command = require('../Command');
 
 class TresMostListenedTracksOfTheMomentUserCommand extends Command {
-    execute(args) {
+    execute() {
         this.unqfy.tresMostListenedTracksOfTheMoment();
     }
 }

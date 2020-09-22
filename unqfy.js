@@ -7,7 +7,6 @@ const IdAutoIncrementPlaylist = require('./src/entity/sequence/IdAutoIncrementPl
 const Playlist = require('./src/entity/Playlist');
 const Album = require('./src/entity/Album');
 const Track = require('./src/entity/Track');
-const { isObject } = require('util');
 const User = require('./src/entity/User');
 
 class UNQfy {
@@ -108,7 +107,7 @@ class UNQfy {
     const track = new Track(trackData.name, trackData.album, trackData.duration, trackData.genres);
     track.setId(this.idIncrementTrack.id);
     albumRecovered.setTrack(track);
-
+    track.setAlbum(albumRecovered);
     return track;
 
   }
@@ -159,13 +158,13 @@ class UNQfy {
 
   removeArtist(id) {
     const index = this.artists.findIndex(a => a.id === id);
-    if (index != -1) {
+    if (index !== -1) {
       this.artists.splice(index, 1);
     }
   }
 
   removeAlbum(id) {
-    let artist = this.getArtistToAlbum(id);
+    const artist = this.getArtistToAlbum(id);
     const albums = artist.albums;
     const indexAlbum = albums.findIndex(a => a.id === id);
     albums.splice(indexAlbum, 1);
@@ -177,7 +176,7 @@ class UNQfy {
   }
 
   isAlbumTrack(id, albums) {
-    return albums.some(a => this.isTrack(id, a.tracks))
+    return albums.some(a => this.isTrack(id, a.tracks));
   }
 
   isTrack(id, tracks) {
@@ -213,21 +212,16 @@ class UNQfy {
     });
   }
 
-  getTracks() {
-    return this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
-  }
-
   printTracksFor(string) {
-    const allTracks = this.getTracks();
+    const allTracks = this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
     allTracks.filter(t => t.name.toLowerCase().includes(string.toLowerCase()));
     allTracks.forEach(a => {
       this.printPrincipalInfo(a);
     });
   }
 
-  printTracksForArtist(name) {
-    const allTracks = this.getTracksMatchingArtist(name);
-    allTracks.filter(a => a.name.toLowerCase().includes(string.toLowerCase()));
+  printTracksForArtist(id) {
+    const allTracks = this.getArtistById(id).albums.flatMap(album => album.tracks);
     allTracks.forEach(a => {
       this.printPrincipalInfo(a);
     });
@@ -236,14 +230,14 @@ class UNQfy {
 
   printTracksForGenre(genre) {
     const allTracks = this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
-    allTracks.filter(t => isGenre(t.genres, genre));
+    allTracks.filter(t => this.isGenre(t.genres, genre));
     allTracks.forEach(a => {
       this.printPrincipalInfo(a);
     });
   }
 
   isGenre(genres, genre) {
-    return genres.some(g => g === genres);
+    return genres.some(g => g === genre);
   }
 
 
@@ -367,12 +361,12 @@ class UNQfy {
     }
   }
 
-  searchUserByName(name) {
+  searchUserByName(id) {
     return this.users.some(u => u.id === id);
   }
 
   addUser(name) {
-    this.existUser(name)
+    this.existUser(name);
     this.idIncrementUser.idAutoIncrement();
     const user = new User(name);
     user.setId(this.idIncrementUser.id);
@@ -382,12 +376,11 @@ class UNQfy {
 
   getUser(id) {
     return this.users.filter(u => u.id === id)[0];
-  }
+  } 
 
-  userListensToATrack(idUser, idTrack) {
+  userListensToATrack(idUser,idTrack) {
     const user = this.getUser(idUser);
-    const track = this.getTrackById(idTrack);
-    track.incrementNumberOfTimesListened();
+    const track = this.getTrackById(idTrack); 
     user.setTrack(track);
   }
 
@@ -404,18 +397,14 @@ class UNQfy {
   }
 
   //Armar automáticamente  e imprimir en pantalla la lista "This is ..." .
-  //Esta lista contiene los 3 temas más escuchados de un artista dado.
-  //Tenga en cuenta que esta lista siempre es calculada "on the fly".
-  tresMostListenedTracksOfTheMoment() {
-    const tracks = this.getTracks().sort(function (a, b) {
-      return a - b;
-    });
-    const newTracks = tracks.slice(0, 3);
-    return newTracks;
+   //Esta lista contiene los 3 temas más escuchados de un artista dado.
+   //Tenga en cuenta que esta lista siempre es calculada "on the fly".
+  playslistAutomatica(duration) {
+    
   }
-
-
-
+   
+  
+  
   searchByName(name) {
     const artists = this.artists.filter(artist => artist.name.includes(name));
     const albums = this.artists.flatMap(artist => artist.albums.filter(album => album.name.includes(name)));
@@ -432,7 +421,7 @@ class UNQfy {
   static load(filename) {
     const serializedData = fs.readFileSync(filename, { encoding: 'utf-8' });
     //COMPLETAR POR EL ALUMNO: Agregar a la lista todas las clases que necesitan ser instanciadas
-    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track, User];
+    const classes = [UNQfy, Author, IdAutoIncrement, IdAutoIncrementPlaylist, Album, Track, User, Playlist];
     return picklify.unpicklify(JSON.parse(serializedData), classes);
   }
 
