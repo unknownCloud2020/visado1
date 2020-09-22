@@ -9,6 +9,7 @@ class Track {
     this.playList;
     this.album = album;
     this.duration = duration;
+    this.numberOfTimesListened = 0;
   }
 
   getId() {
@@ -65,6 +66,18 @@ class Track {
 
   setDuration(duration) {
     this.duration = duration;
+  }
+
+  getNumberOfTimesListened() {
+    return this.numberOfTimesListened;
+  }
+
+  setNumberOfTimesListened(number) {
+    this.numberOfTimesListened = this.numberOfTimesListened + number;
+  }
+
+  incrementNumberOfTimesListened() {
+    this.numberOfTimesListened = this.numberOfTimesListened + 1;
   }
 
 }

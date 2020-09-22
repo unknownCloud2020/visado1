@@ -213,8 +213,12 @@ class UNQfy {
     });
   }
 
+  getTracks() {
+    return this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
+  }
+
   printTracksFor(string) {
-    const allTracks = this.artists.flatMap(artist => artist.albums.flatMap(album => album.tracks));
+    const allTracks = this.getTracks();
     allTracks.filter(t => t.name.toLowerCase().includes(string.toLowerCase()));
     allTracks.forEach(a => {
       this.printPrincipalInfo(a);
@@ -378,11 +382,12 @@ class UNQfy {
 
   getUser(id) {
     return this.users.filter(u => u.id === id)[0];
-  } 
+  }
 
-  userListensToATrack(idUser,idTrack) {
+  userListensToATrack(idUser, idTrack) {
     const user = this.getUser(idUser);
-    const track = this.getTrackById(idTrack); 
+    const track = this.getTrackById(idTrack);
+    track.incrementNumberOfTimesListened();
     user.setTrack(track);
   }
 
@@ -399,14 +404,18 @@ class UNQfy {
   }
 
   //Armar automáticamente  e imprimir en pantalla la lista "This is ..." .
-   //Esta lista contiene los 3 temas más escuchados de un artista dado.
-   //Tenga en cuenta que esta lista siempre es calculada "on the fly".
-  playslistAutomatica(duration) {
-    
+  //Esta lista contiene los 3 temas más escuchados de un artista dado.
+  //Tenga en cuenta que esta lista siempre es calculada "on the fly".
+  tresMostListenedTracksOfTheMoment() {
+    const tracks = this.getTracks().sort(function (a, b) {
+      return a - b;
+    });
+    const newTracks = tracks.slice(0, 3);
+    return newTracks;
   }
-   
-  
-  
+
+
+
   searchByName(name) {
     const artists = this.artists.filter(artist => artist.name.includes(name));
     const albums = this.artists.flatMap(artist => artist.albums.filter(album => album.name.includes(name)));
