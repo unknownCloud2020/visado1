@@ -30,21 +30,33 @@ class UNQfy {
       - una propiedad name (string)
       - una propiedad country (string)
     */
-    try {
-      this.idIncrementArtist.idAutoIncrement();
-      const artist = new Author(artistData.name, artistData.country);
-      artist.setId(this.idIncrementArtist.id);
-      this.artists.push(artist);
-
-      return artist;
-
-    } catch (error) {
-      console.log(error);
-    }
-
+    this.existArtist(artistData);
+    this.idIncrementArtist.idAutoIncrement();
+    const artist = new Author(artistData.name, artistData.country);
+    artist.setId(this.idIncrementArtist.id);
+    this.artists.push(artist);
+    return artist;
   }
 
+  existArtist(artist) {
+    if (this.searchArtistByName(artist.name)) {
+      throw "The artist alredy exist.";
+    }
+  }
 
+  searchArtistByName(name) {
+    return this.artists.some(artist => artist.name === name);
+  }
+
+  existAlbum(album) {
+    if (this.searchArtistByName(album.name)) {
+      throw "The album alredy exist.";
+    }
+  }
+
+  searchAlbumByName(name) {
+    return this.artists.flatMap(artist => artist.albums.some(album => album.name === name));
+  }
   // albumData: objeto JS con los datos necesarios para crear un album
   //   albumData.name (string)
   //   albumData.year (number)
@@ -55,12 +67,12 @@ class UNQfy {
        - una propiedad name (string)
        - una propiedad year (number)
     */
+    this.existAlbum(albumData);
     this.idIncrementAlbum.idAutoIncrement();
     const artistRecovered = this.artists.filter(a => a.id === parseInt(artistId))[0];
     const album = new Album(albumData.name, albumData.year);
     album.setId(this.idIncrementAlbum.id);
     artistRecovered.setAlbum(album);
-
     return album;
   }
 
@@ -195,7 +207,7 @@ class UNQfy {
     properties.forEach(propertie => {
       if (!this.isDetail(propertie)) {
         console.log(`- ${propertie.get(0)}: `, propertie.get(1));
-      }    
+      }
     });
   }
 
